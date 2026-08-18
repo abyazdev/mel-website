@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Something I Never Said</title>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500&family=Parisienne&display=swap');
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background: #09070b;
+        color: #eee8ec;
+        font-family: 'Inter', sans-serif;
+        overflow-x: hidden;
+    }
+
+    /* ---------- BACKGROUND ---------- */
+
+    .background {
+        position: fixed;
+        inset: 0;
+        z-index: -5;
+        background:
+            radial-gradient(circle at 20% 20%, rgba(139, 48, 82, .18), transparent 30%),
+            radial-gradient(circle at 80% 70%, rgba(92, 42, 78, .15), transparent 35%),
+            #09070b;
+    }
+
+    .stars {
+        position: fixed;
+        inset: 0;
+        z-index: -4;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+    .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: white;
+        border-radius: 50%;
+        opacity: .35;
+        animation: twinkle 4s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+        0%, 100% { opacity: .15; transform: scale(1); }
+        50% { opacity: .8; transform: scale(1.7); }
+    }
+
+    /* ---------- HERO ---------- */
+
+    section {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 80px 24px;
+    }
+
+    .hero {
+        text-align: center;
+        flex-direction: column;
+    }
+
+    .small {
+        color: #bda9b3;
+        font-size: 12px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 25px;
+    }
+
+    .hero h1 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(55px, 10vw, 105px);
+        font-weight: 500;
+        line-height: .9;
+        max-width: 900px;
+    }
+
+    .hero h1 span {
+        color: #d889a4;
+        font-style: italic;
+    }
+
+    .hero p {
+        margin-top: 35px;
+        color: #aaa0a7;
+        font-size: 15px;
+        line-height: 1.8;
+        max-width: 500px;
+    }
+
+    .scroll {
+        margin-top: 65px;
+        color: #756b72;
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        animation: float 2.5s infinite ease-in-out;
+    }
+
+    .scroll::after {
+        content: "↓";
+        display: block;
+        margin-top: 12px;
+        color: #d889a4;
+        font-size: 20px;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(8px); }
+    }
+
+    /* ---------- CONTENT ---------- */
+
+    .content {
+        max-width: 760px;
+        margin: auto;
+        width: 100%;
+    }
+
+    .chapter {
+        min-height: auto;
+        padding-top: 140px;
+        padding-bottom: 140px;
+    }
+
+    .chapter-number {
+        font-size: 11px;
+        color: #b76b87;
+        letter-spacing: 4px;
+        margin-bottom: 18px;
+    }
+
+    .chapter h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(40px, 7vw, 65px);
+        font-weight: 500;
+        margin-bottom: 35px;
+        line-height: 1;
+    }
+
+    .chapter p {
+        font-family: 'Cormorant Garamond', serif;
+        color: #c9c0c5;
+        font-size: clamp(21px, 3vw, 27px);
+        line-height: 1.65;
+        font-weight: 400;
+    }
+
+    .highlight {
+        color: #e19ab2;
+    }
+
+    .line {
+        width: 45px;
+        height: 1px;
+        background: #b76b87;
+        margin: 35px 0;
+    }
+
+    /* ---------- QUOTE ---------- */
+
+    .quote-section {
+        min-height: 70vh;
+        text-align: center;
+    }
+
+    .quote {
+        max-width: 800px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(30px, 5vw, 50px);
+        line-height: 1.3;
+        font-style: italic;
+        color: #e4d9de;
+    }
+
+    .quote::before {
+        content: "“";
+        display: block;
+        color: #b76b87;
+        font-size: 80px;
+        height: 45px;
+    }
+
+    /* ---------- LETTER ---------- */
+
+    .letter-section {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    .letter {
+        position: relative;
+        background: rgba(255,255,255,.035);
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 3px;
+        padding: clamp(35px, 7vw, 75px);
+        box-shadow: 0 30px 100px rgba(0,0,0,.4);
+    }
+
+    .letter::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 35px;
+        bottom: 35px;
+        width: 2px;
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            #a95776,
+            transparent
+        );
+    }
+
+    .letter p {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(19px, 3vw, 24px);
+        line-height: 1.8;
+        color: #d5cbd0;
+        margin-bottom: 25px;
+    }
+
+    .letter .signature {
+        margin-top: 50px;
+        font-family: 'Parisienne', cursive;
+        color: #d889a4;
+        font-size: 34px;
+    }
+
+    /* ---------- HEART ---------- */
+
+    .heart-section {
+        min-height: 70vh;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .heart {
+        font-size: 55px;
+        color: #d06d8f;
+        animation: heartbeat 2s infinite;
+        filter: drop-shadow(0 0 25px rgba(208,109,143,.35));
+    }
+
+    @keyframes heartbeat {
+        0%, 100% { transform: scale(1); }
+        15% { transform: scale(1.12); }
+        30% { transform: scale(1); }
+        45% { transform: scale(1.08); }
+    }
+
+    .heart-section h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(40px, 7vw, 65px);
+        font-weight: 500;
+        margin-top: 35px;
+    }
+
+    .heart-section p {
+        max-width: 570px;
+        color: #aaa0a7;
+        line-height: 1.9;
+        margin-top: 20px;
+    }
+
+    /* ---------- FINAL ---------- */
+
+    .final {
+        min-height: 100vh;
+        text-align: center;
+        flex-direction: column;
+    }
+
+    .final h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(45px, 8vw, 75px);
+        font-weight: 500;
+        max-width: 800px;
+        line-height: 1;
+    }
+
+    .final h2 span {
+        color: #d889a4;
+        font-style: italic;
+    }
+
+    .final p {
+        max-width: 550px;
+        color: #aaa0a7;
+        line-height: 1.9;
+        margin-top: 30px;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 15px;
+        margin-top: 45px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    button {
+        border: 1px solid rgba(216,137,164,.5);
+        background: rgba(216,137,164,.08);
+        color: #e5cbd5;
+        padding: 15px 28px;
+        font-family: 'Inter', sans-serif;
+        cursor: pointer;
+        border-radius: 100px;
+        transition: .3s ease;
+    }
+
+    button:hover {
+        background: rgba(216,137,164,.18);
+        transform: translateY(-2px);
+    }
+
+    .response {
+        max-width: 600px;
+        margin-top: 35px;
+        min-height: 70px;
+        color: #d8cbd1;
+        line-height: 1.8;
+        opacity: 0;
+        transition: .7s;
+    }
+
+    .response.show {
+        opacity: 1;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+        text-align: center;
+        padding: 60px 20px;
+        color: #514a4f;
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+
+    /* ---------- FADE IN ---------- */
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(35px);
+        transition: opacity 1.2s ease, transform 1.2s ease;
+    }
+
+    .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @media (max-width: 600px) {
+        .chapter {
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .letter {
+            padding: 35px 25px 35px 35px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="stars" id="stars"></div>
+
+<!-- HERO -->
+<section class="hero">
+
+    <div style="
+        font-family: 'Parisienne', cursive;
+        color: #d889a4;
+        font-size: clamp(30px, 5vw, 42px);
+        margin-bottom: 35px;
+    ">
+        To my beloved Melina
+    </div>
+
+    <div class="small">something I need you to know</div>
+
+    <h1>
+        I tried to<br>
+        <span>move on.</span>
+    </h1>
+    <p>
+        And for a while, I genuinely thought I had.
+        Then somehow, being friends with you again
+        made me realize something I wasn't ready to admit.
+    </p>
+
+    <div class="scroll">
+        take your time
+    </div>
+</section>
+
+
+<div class="content">
+
+    <!-- CHAPTER 1 -->
+    <section class="chapter reveal">
+        <div>
+            <div class="chapter-number">01 — THE TRUTH</div>
+
+            <h2>
+                Maybe the feeling<br>
+                never really left.
+            </h2>
+
+            <div class="line"></div>
+
+            <p>
+                I know it probably seemed like I had moved past
+                how I used to feel about you.
+                And in a way, I did move past the old version of it.
+            </p>
+
+            <br>
+
+            <p>
+                But being friends with you again made me realize
+                that my feelings didn't disappear.
+                <span class="highlight">
+                    They just changed into something deeper.
+                </span>
+            </p>
+        </div>
+    </section>
+
+
+    <!-- CHAPTER 2 -->
+    <section class="chapter reveal">
+        <div>
+            <div class="chapter-number">02 — WHY I'M SAYING THIS</div>
+
+            <h2>
+                I don't want<br>
+                to lie to you.
+            </h2>
+
+            <div class="line"></div>
+
+            <p>
+                I know the timing might not be right.
+                I know this might seem weird.
+                And I know that the last time I opened my heart,
+                I didn't exactly handle things the way I should have.
+            </p>
+
+            <br>
+
+            <p>
+                But I don't want to make the same mistake again
+                by pretending that I only see you as a friend
+                when I know that's not the truth.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- QUOTE -->
+    <section class="quote-section reveal">
+        <div class="quote">
+            I'd rather tell you the truth
+            and risk getting hurt
+            than give you a version of me
+            that isn't honest.
+        </div>
+    </section>
+
+
+    <!-- CHAPTER 3 -->
+    <section class="chapter reveal">
+        <div>
+            <div class="chapter-number">03 — THE PART I CAN'T EXPLAIN</div>
+
+            <h2>
+                You're on my mind<br>
+                more than you know.
+            </h2>
+
+            <div class="line"></div>
+
+            <p>
+                Sometimes I catch myself thinking about you
+                and wondering what I'm even doing.
+            </p>
+
+            <br>
+
+            <p>
+                I ask myself if I'm wasting my time.
+                I tell myself I should stop.
+                I tell myself there are other options.
+            </p>
+
+            <br>
+
+            <p>
+                But somehow, none of those thoughts
+                feel stronger than what I feel for you.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- CHAPTER 4 -->
+    <section class="chapter reveal">
+        <div>
+            <div class="chapter-number">04 — WHAT YOU DON'T SEE</div>
+
+            <h2>
+                I'm trying<br>
+                to become better.
+            </h2>
+
+            <div class="line"></div>
+
+            <p>
+                Not because I expect something from you.
+            </p>
+
+            <br>
+
+            <p>
+                I'm trying because I want to become someone
+                I'm proud of.
+                Someone who knows how to love properly.
+                Someone who doesn't destroy something beautiful
+                because he doesn't know how to handle his feelings.
+            </p>
+
+            <br>
+
+            <p>
+                And honestly...
+                a part of that motivation comes from you.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- HEART -->
+    <section class="heart-section reveal">
+        <div class="heart">♥</div>
+
+        <h2>
+            I pray for you.
+        </h2>
+
+        <p>
+            I pray that you're happy.
+            I pray that you're safe.
+            I pray that life gives you everything
+            you're looking for.
+
+            <br><br>
+
+            And yes, sometimes I even pray that somehow,
+            one day, those things might include me.
+        </p>
+    </section>
+
+
+    <!-- LETTER -->
+    <section class="letter-section reveal">
+        <div class="letter">
+
+            <p>
+                I don't know if you feel the same way.
+            </p>
+
+            <p>
+                And I'm not going to pretend that I know what
+                you're thinking or what your answer will be.
+            </p>
+
+            <p>
+                I'm not telling you all of this because
+                I want to pressure you.
+                I'm telling you because keeping it inside
+                has started to feel like lying to you.
+            </p>
+
+            <p>
+                You deserve to know how I really feel.
+            </p>
+
+            <p>
+                I don't want fake hopes.
+                I don't want you to say something just because
+                you're scared of hurting me.
+            </p>
+
+            <p>
+                I just wanted, for once, to give you
+                the completely honest version of me.
+            </p>
+
+            <p>
+                The truth is...
+                I love you.
+            </p>
+
+            <p>
+                Maybe the timing is wrong.
+                Maybe I'm wrong.
+                Maybe you don't feel anything close
+                to what I feel.
+            </p>
+
+            <p>
+                But I couldn't keep pretending
+                that you mean nothing more to me.
+            </p>
+
+            <div class="signature">
+                — from someone who still chooses you
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- FINAL -->
+    <section class="final reveal">
+
+        <div class="small">and this is the only thing I ask</div>
+
+        <h2>
+            Whatever you feel...
+            <span>be honest with me.</span>
+        </h2>
+
+        <p>
+            You don't owe me a yes.
+            You don't owe me anything.
+
+            <br><br>
+
+            If you need time, take it.
+            If you don't feel the same, tell me.
+            If there's even a small part of you
+            that wants to see where this could go,
+            tell me that too.
+
+            <br><br>
+
+            I know the truth that you don't love me but at least i do
+        </p>
+
+        <div class="buttons">
+
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+
+    <button onclick="answer('honest')">
+        I want to tell you something
+    </button>
+
+    <a
+        href="https://www.instagram.com/abderah_benz/"
+        target="_blank"
+        rel="noopener noreferrer"
+        style="
+            color: #a99aa2;
+            font-size: 12px;
+            text-decoration: none;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            transition: 0.3s ease;
+        "
+        onmouseover="this.style.color='#d889a4'; this.style.opacity='1';"
+        onmouseout="this.style.color='#a99aa2'; this.style.opacity='0.8';"
+    >
+        ♡ Find me on Instagram
+    </a>
+
+</div>
+
+            <button onclick="answer('time')">
+                I need some time
+            </button>
+
+            <button onclick="answer('talk')">
+                I want to talk about it ♥
+            </button>
+
+        </div>
+
+        <div class="response" id="response"></div>
+
+    </section>
+
+</div>
+
+
+<footer>
+    made with a heart that couldn't stay quiet anymore
+    <br><br>
+    <span style="font-family: 'Parisienne', cursive; color: #d889a4; font-size: 24px;">
+        With my best regards,<br>
+        Abderrahmene Benzeggouta
+    </span>
+</footer>
+
+
+
+<script>
+
+    /* ---------- STARS ---------- */
+
+    const stars = document.getElementById("stars");
+
+    for (let i = 0; i < 100; i++) {
+        const star = document.createElement("div");
+        star.className = "star";
+
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
+        star.style.animationDelay = Math.random() * 4 + "s";
+        star.style.animationDuration = (3 + Math.random() * 4) + "s";
+
+        stars.appendChild(star);
+    }
+
+
+    /* ---------- SCROLL REVEAL ---------- */
+
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    document.querySelectorAll(".reveal").forEach(el => {
+        observer.observe(el);
+    });
+
+
+    /* ---------- FINAL ANSWERS ---------- */
+
+    function answer(type) {
+
+        const response = document.getElementById("response");
+
+        if (type === "talk") {
+
+            response.innerHTML = `
+                <strong style="color:#d889a4;">
+                    Then let's talk. ❤️
+                </strong>
+                <br><br>
+                No pressure. No expectations.
+                Just you and me being honest with each other.
+            `;
+
+        }
+
+        else if (type === "time") {
+
+            response.innerHTML = `
+                <strong style="color:#d889a4;">
+                    Take all the time you need.
+                </strong>
+                <br><br>
+                I meant what I said.
+                I don't want an answer you aren't ready to give.
+            `;
+
+        }
+
+        else {
+
+            response.innerHTML = `
+                <strong style="color:#d889a4;">
+                    I'm listening.
+                </strong>
+                <br><br>
+                Whatever it is, just tell me honestly.
+                That's all I've ever wanted from you.
+            `;
+        }
+
+        response.classList.add("show");
+
+        response.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }
+
+</script>
+
+</body>
+</html>
